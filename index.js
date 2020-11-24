@@ -10,6 +10,8 @@ import React, {useEffect} from 'react';
 import {AppRegistry, Button, StyleSheet, Text, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {TextField} from 'react-native-ui-lib';
+import {screenIds, SCREENS} from './src/screens';
+import Component from './src/screens/LoginScreen';
 
 function App(props) {
   useEffect(() => {
@@ -28,7 +30,7 @@ function App(props) {
           console.log(props.componentId);
           Navigation.push(props.componentId, {
             component: {
-              name: 'LoginScreen',
+              name: screenIds.LOGIN_SCREEN,
               options: {
                 topBar: {
                   title: {
@@ -43,41 +45,6 @@ function App(props) {
     </View>
   );
 }
-
-function LoginScreen2(props) {
-  useEffect(() => {
-    // if (!firebase.app.name) firebase.initializeApp(firebaseConfig);
-    //
-    // firebaseActions.login("rostik270900@gmail.com", "password");
-  }, []);
-
-  return (
-    <View style={styles.container}>
-      <Text>Login</Text>
-      <Button
-        title={'Push Login Screen'}
-        onPress={async () => {
-          console.log(props.componentId);
-          Navigation.push('mainComponentId', {
-            component: {
-              name: 'LoginScreen',
-              options: {
-                topBar: {
-                  title: {
-                    text: 'Login Screen',
-                  },
-                },
-              },
-            },
-          });
-        }}
-      />
-    </View>
-  );
-}
-
-Navigation.registerComponent('Home', () => App);
-Navigation.registerComponent('LoginScreen', () => LoginScreen2);
 
 const styles = StyleSheet.create({
   container: {
@@ -86,6 +53,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+});
+
+Navigation.registerComponent('Home', () => App);
+
+//Register Screens
+Object.entries(SCREENS).forEach(([key, value]) => {
+  console.log(value);
+  Navigation.registerComponent(value.id, value.generator);
 });
 
 Navigation.events().registerAppLaunchedListener(async () => {
@@ -104,5 +79,3 @@ Navigation.events().registerAppLaunchedListener(async () => {
     },
   });
 });
-
-// AppRegistry.registerComponent(appName, () => App);

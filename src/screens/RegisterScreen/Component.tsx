@@ -6,11 +6,11 @@ import {screenIds} from '../index';
 const Component = () => {
   return (
     <SafeAreaView>
-      <Text>Login</Text>
+      <Text>Register</Text>
     </SafeAreaView>
   );
 };
 
-Navigation.registerComponent(screenIds.REGISTER_SCREEN, () => Component);
+Navigation.registerComponent(screenIds.LOGIN_SCREEN, () => Component);
 
 export default Component;
