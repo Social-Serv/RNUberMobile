@@ -23,14 +23,33 @@ function App(props) {
   return (
     <View style={styles.container}>
       <Text>Uber Mobile</Text>
-      <TextField key={'email'} placeholder={'Email'} />
+      <View style={{padding: 10}}>
+        <Button
+          title={'Push Login Screen'}
+          onPress={async () => {
+            console.log(props.componentId);
+            Navigation.push(props.componentId, {
+              component: {
+                name: screenIds.LOGIN_SCREEN,
+                options: {
+                  topBar: {
+                    title: {
+                      text: 'Login Screen',
+                    },
+                  },
+                },
+              },
+            });
+          }}
+        />
+      </View>
       <Button
-        title={'Push Login Screen'}
+        title={'Push Register Screen'}
         onPress={async () => {
           console.log(props.componentId);
           Navigation.push(props.componentId, {
             component: {
-              name: screenIds.LOGIN_SCREEN,
+              name: screenIds.REGISTER_SCREEN,
               options: {
                 topBar: {
                   title: {
