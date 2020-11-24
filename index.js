@@ -9,6 +9,7 @@ import {name as appName} from './app.json';
 import React, {useEffect} from 'react';
 import {AppRegistry, Button, StyleSheet, Text, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
+import {TextField} from 'react-native-ui-lib';
 
 function App(props) {
   useEffect(() => {
@@ -20,6 +21,7 @@ function App(props) {
   return (
     <View style={styles.container}>
       <Text>Uber Mobile</Text>
+      <TextField key={'email'} placeholder={'Email'} />
       <Button
         title={'Push Login Screen'}
         onPress={async () => {
